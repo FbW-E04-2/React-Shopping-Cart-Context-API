@@ -2,22 +2,10 @@ import React, { useContext } from "react";
 import { MyContext } from "../App";
 
 function Products() {
-  const { products, setCart, cart } = useContext(MyContext);
-
-  const addToCart = (product) => {
-    let item = cart.find((elem) => elem.title === product.title); //finding existing item in cart
-    if (item) {
-      item.number++;
-      setCart([...cart]);
-    } else {
-      product.number = 1;
-      setCart([...cart, product]);
-    }
-
-    product.inventory--;
-  };
+  const { products,addToCart } = useContext(MyContext);
 
   
+
   return (
     <div style={{border:"5px solid black"}}>
       {products.map((product) => {

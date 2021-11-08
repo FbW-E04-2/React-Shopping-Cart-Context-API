@@ -6,7 +6,7 @@ function Cart() {
 
 
    
-    const {cart,setCart} = useContext(MyContext)
+    const {cart,removeAll,removeOne,deleteAllItems} = useContext(MyContext)
     const [total,setTotal]=useState(0)
 
     useEffect(()=>{
@@ -19,18 +19,19 @@ function Cart() {
 
     },[cart])
 
+
     return (
         <div style={{border:"5px solid green"}}>
-            {cart.map(product=>{
+            {cart.map(cartProduct=>{
                 return(
-                    <div key={product.id}>
-                    <h2>{product.title} | $ {product.price} | x {product.number}</h2>
-                    <button>remove one</button>
-                    <button>remove all</button>
+                    <div key={cartProduct.id}>
+                    <h2>{cartProduct.title} | $ {cartProduct.price} | x {cartProduct.number}</h2>
+                    <button onClick={()=>removeOne(cartProduct)}>remove one</button>
+                    <button onClick={()=>removeAll(cartProduct)}>remove all</button>
                 </div>
                 )
             })}
-            <h2>Total : {total}</h2>
+            <h2>Total : {total}  </h2><button onClick={deleteAllItems}>checkout</button>
         </div>
     )
 }
